@@ -1,43 +1,75 @@
-import React from 'react'
+import React from "react";
 
 const TableHeader = () => {
   // boilerplate table header functional component
   return (
     <thead>
-      <tr>
-        <th>Name</th>
-        <th>URL</th>
-        <th>Remove</th>
+      <tr style={{ borderBottom: "1px solid #dcdced", color: "orange" }}>
+        <td width={"30%"} style={{ fontWeight: 500 }}>
+          Web
+        </td>
+        <td width={"50%"} style={{ fontWeight: 500 }}>
+          HyperLink
+        </td>
+        <td width={"15%"} style={{ fontWeight: 500 }}>
+          Delete
+        </td>
       </tr>
     </thead>
-  )
-}
+  );
+};
 
-const TableBody = (props) => {
+const TableBody = ({ props, removeLink }) => {
   // boilerplate table body functional component
   // we use Array.map to create table rows from LinkData passed via props
-  const rows = props.linkData.map((row, index) => {
+  const rows = props.map((row, index) => {
     return (
-      <tr key={index}>
-        <td>{row.name}</td>
-        <td>
-          <a href={row.URL}>{row.URL}</a>
+      <tr key={index} style={{ borderBottom: "1px solid #dcdced" }}>
+        <td width={"30%"} style={{ padding: "15px 0px", fontWeight: 500 }}>
+          {row.web}
         </td>
-        <td>
-          <button onClick={() => props.removeLink(index)}>Delete</button>
+        <td width={"50%"} style={{ padding: "15px 0px" }}>
+          <a style={{ color: "#318CE7" }} href={row.links} rel="noreferrer">
+            {row.links}
+          </a>
+        </td>
+        <td width={"15%"} style={{ padding: "0px 0px" }}>
+          <button
+            type="submit"
+            style={{
+              backgroundColor: "orange",
+              color: "black",
+              fontSize: "20px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              width: "90px",
+              borderRadius: "2px",
+              height: "35px",
+            }}
+            onClick={() => removeLink(index)}
+          >
+            Delete
+          </button>
         </td>
       </tr>
-    )
-  })
+    );
+  });
 
-  return <tbody>{rows}</tbody>
-}
+  return <tbody>{rows}</tbody>;
+};
 
-const Table = (props) => {
+const Table = ({ props, removeLink }) => {
+  // eslint-disable-next-line no-lone-blocks
   {
-    /*TODO - return <table> component, TableHeader and TableBody  and pass props!*/
-    return <table></table>
+    return (
+      <div style={{ marginLeft: "210px" }}>
+        <table style={{ width: "82%", borderCollapse: "collapse" }}>
+          <TableHeader />
+          <TableBody props={props} removeLink={removeLink} />
+        </table>
+      </div>
+    );
   }
-}
+};
 
-export default Table
+export default Table;

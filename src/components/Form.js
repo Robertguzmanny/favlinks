@@ -1,26 +1,83 @@
-import { useState } from 'react'
+import React, { Component } from "react";
 
-const Form = () => {
-  const handleChange = (event) => {
-    /*
-            TODO - Logic for changing state based on form changes
-        */
+class Form extends Component {
+  render() {
+    const { handleSubmit, getWeb, web, links, setLink } = this.props;
+    return (
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
+        <div style={{ marginLeft: "210px" }}>
+          <div style={{ marginBottom: "12px" }}>
+            <div
+              style={{
+                fontSize: "16px",
+                fontWeight: 500,
+                marginBottom: "6px",
+                color: "orange",
+              }}
+            >
+              {" "}
+              Web{" "}
+            </div>
+            <input
+              value={web}
+              onChange={(event) => getWeb(event.target.value)}
+              type="web"
+              name="Project"
+              style={{ width: "95%", padding: "5px", borderRadius: "3px" }}
+            />
+          </div>
+          <div>
+            <div
+              style={{
+                fontSize: "16px",
+                fontWeight: 500,
+                marginBottom: "6px",
+                color: "orange",
+              }}
+            >
+              {" "}
+              HyperLink{" "}
+            </div>
+            <input
+              value={links}
+              onChange={(event) => setLink(event.target.value)}
+              type="link"
+              name="link"
+              style={{ width: "95%", padding: "5px", borderRadius: "3px" }}
+            />
+          </div>
+          <div
+            style={{
+              width: "40px",
+              height: "50px",
+              marginTop: "6px",
+            }}
+          >
+            <button
+              type="submit"
+              style={{
+                backgroundColor: "orange",
+                color: "black",
+                fontSize: "14px",
+                fontWeight: "none",
+                width: "90px",
+                height: "45px",
+                cursor: "pointer",
+                borderRadius: "1px",
+              }}
+            >
+              Click me!
+            </button>
+          </div>
+        </div>
+      </form>
+    );
   }
-
-  const onFormSubmit = (event) => {
-    // to prevent page reload on form submit
-    event.preventDefault()
-
-    /*
-            TODO - Logic for calling props to handle submission and setting state changes
-        */
-  }
-
-  return (
-    <form>
-      {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
-    </form>
-  )
 }
 
-export default Form
+export default Form;
